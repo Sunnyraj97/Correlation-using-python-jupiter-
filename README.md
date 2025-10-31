@@ -1,30 +1,80 @@
+# 🎬 Movie Correlation Analysis  
+### Budget • Gross Earnings • Production Company • Votes
 
+## 🎯 Objective  
+Analyze relationships between **movie budget, gross earnings, votes, runtime**, and **production company** using Python.  
+Primary goal: Determine how strongly each factor correlates with financial success (**Gross Earnings**) using Pearson correlation.
 
-# Correlation Analysis: Budget, Gross Earnings, Production Company and Votes
+---
 
-## Objective  
-Analyze relationships among movie budget, gross earnings, votes, runtime, and production company using Python. Focus on Pearson correlation to identify strength and direction of linear relationships, supported by visualizations.
+## ✅ Hypotheses  
+| Hypothesis | Expected Outcome |
+|------------|------------------|
+| Higher Budget → Higher Gross Earnings | ✅ Likely strong correlation |
+| Production Company influences Gross Earnings | ❓ Needs validation |
 
-## Hypotheses  
-- Budget is strongly correlated with Gross Earnings.  
-- Production Company is strongly correlated with Gross Earnings.
+---
 
-## Key Findings  
-- **Budget vs. Gross Earnings:** Strong positive correlation (r = 0.74), confirming that higher budgets tend to align with higher gross earnings.  
-- **Production Company vs. Gross Earnings:** Weak correlation (r = 0.15), indicating production company is not a strong linear predictor of gross earnings in this dataset.  
-- **Votes vs. Gross Earnings:** Moderate to strong positive correlation (r = 0.614), suggesting more votes associate with higher earnings.
+## 🔍 Key Findings  
 
-## Data Insights  
-- Budget is the strongest numerical predictor of gross earnings.  
-- Audience engagement (votes) positively relates to revenue, reflecting popularity impact.  
-- Other factors beyond production company likely influence gross earnings more significantly.
+| Relationship | Correlation (Pearson r) | Interpretation |
+|--------------|-------------------------|----------------|
+| **Budget → Gross Earnings** | **0.74** | Strong positive — more budget → more earnings |
+| **Votes → Gross Earnings** | **0.61** | Moderate to strong — audience engagement drives revenue |
+| **Production Company → Gross Earnings** | **0.15** | Weak — company itself is not a predictor |
 
-## Methods  
-- Calculated Pearson correlation coefficients using cleaned numeric data.  
-- Visualized relationships using scatter plots with regression lines, box plots, and heatmaps of correlation matrices.
+💡 **Insight**  
+- Budget is the strongest predictor of earnings  
+- Votes reflect audience interest and popularity  
+- Production Company shows weak predictive power
 
-## Reproducibility  
-Use Python libraries (pandas, seaborn, scipy) to compute correlations and generate visualizations. Below is an example snippet:
+---
+
+## 📊 Data Insights  
+
+- Movies with higher budgets generally generate higher gross revenue.
+- Higher vote counts suggest audience approval—which correlates to earnings.
+- Production company does **not** directly influence earnings — other variables like:
+  - Genre
+  - Cast star power
+  - Release timing (holiday vs. off-season)
+  - Marketing spend  
+  have a bigger impact.
+
+---
+
+## 🧠 Interpretation Scale (How to read correlation values)
+
+| Pearson r Value | Meaning |
+|-----------------|----------|
+| **+1.0 to +0.7** | Strong positive relationship |
+| **+0.7 to +0.3** | Moderate positive relationship |
+| **+0.3 to 0.0** | Weak or no relationship |
+| **0.0 to -0.3** | Weak negative relationship |
+| **-0.3 to -0.7** | Moderate negative relationship |
+| **-0.7 to -1.0** | Strong negative relationship |
+
+> **Example**: r = 0.74 (Budget vs Gross) means earnings and budget move strongly in the same direction.
+
+---
+
+## 🧪 Methods & Tech Stack  
+
+**Tech Used:**  
+✅ Python  
+✅ Pandas  
+✅ Seaborn / Matplotlib  
+✅ scipy.stats (Pearson correlation)
+
+**Approach:**  
+1. Data cleaning — ensure numeric consistency  
+2. Correlation calculations using `pearsonr()`  
+3. Scatterplots & regression lines  
+4. Heatmap visualization for overview of all correlations
+
+---
+
+## 🧪 Reproducible Code Example
 
 ```python
 import pandas as pd
@@ -50,20 +100,3 @@ plt.show()
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
 plt.title('Correlation Matrix')
 plt.show()
-```
-
-## Interpretation Scale  
-- +1 = perfect positive linear relationship  
-- 0 = no linear relationship  
-- -1 = perfect negative linear relationship
-
-## Data Notes
-- The strong positive correlation between budget and gross earnings suggests budget planning may affect revenue expectations.
-- The low correlation for production company indicates that other factors (marketing, genre, release timing) likely influence gross earnings more significantly.
-- Votes reflect audience engagement and are meaningfully related to revenue.
-
-## Limitations & Next Steps  
-- Correlation does not imply causation; further modeling needed for causal insights.  
-- Production company’s categorical nature limits its direct correlation insight; encoding and advanced models may reveal nonlinear effects.  
-- Explore metrics like ROI and multivariate regression for deeper understanding.
-
